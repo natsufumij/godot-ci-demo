@@ -45,7 +45,7 @@ jobs:
           prerelease: false
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
-          body: TODO: New Release.
+          body: New Release.
 
   export-linux:
     name: Linux Export
