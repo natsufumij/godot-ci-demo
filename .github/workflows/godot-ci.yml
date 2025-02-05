@@ -72,6 +72,16 @@ jobs:
         with:
           name: linux
           path: build/linux
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/linux/*
+          draft: false
+          prerelease: false
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: New Release.
 
   # export-android:
   #   runs-on: ubuntu-latest
