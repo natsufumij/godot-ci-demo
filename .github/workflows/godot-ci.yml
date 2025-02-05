@@ -34,8 +34,18 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: window
+          name: windows
           path: build/windows
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/windows/*
+          draft: false
+          prerelease: false
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          body: TODO: New Release.
 
   export-linux:
     name: Linux Export
@@ -63,21 +73,22 @@ jobs:
           name: linux
           path: build/linux
 
-  export-android:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Setup Godot
-        uses: barichello/godot-ci:4.3
-      - name: Export Android APK
-        run: |
-          godot --path . --export-debug "Android" android/build/$EXPORT_NAME.apk
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-apk
-          path: android/build/$EXPORT_NAME.apk
+  # export-android:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #     - name: Setup Godot
+  #       uses: barichello/godot-ci:4.3
+  #     - name: Export Android APK
+  #       run: |
+  #         godot --path . --export-debug "Android" android/build/$EXPORT_NAME.apk
+  #     - name: Upload APK
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: android-apk
+  #         path: android/build/$EXPORT_NAME.apk
+
 
   # export-web:
   #   name: Web Export
