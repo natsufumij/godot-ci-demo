@@ -43,8 +43,8 @@ jobs:
           files: build/windows/*
           draft: false
           prerelease: false
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
           body: New Release.
 
   export-linux:
