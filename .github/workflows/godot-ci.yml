@@ -69,7 +69,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup Godot
-        uses: abarichello/godot-ci@4.3-stable
+        uses: barichello/godot-ci:4.3
       - name: Export Android APK
         run: |
           godot --path . --export-debug "Android" android/build/$EXPORT_NAME.apk
