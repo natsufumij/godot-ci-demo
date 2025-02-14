@@ -102,7 +102,7 @@ jobs:
           mkdir -v -p build/android
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-debug "Android" "$EXPORT_DIR/android/$EXPORT_NAME-linux-x86_64"
+          godot --headless --verbose --export-debug "Android" "$EXPORT_DIR/android/$EXPORT_NAME-android.apk"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
