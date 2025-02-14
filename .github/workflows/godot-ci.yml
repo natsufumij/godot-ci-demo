@@ -141,13 +141,16 @@ jobs:
             git push origin $TAG_NAME
             echo "::set-output name=TAG_NAME::$TAG_NAME"
         - name: Create Release
-          uses: actions/create-release@v2
+          id: create_release
+          uses: softprops/action-gh-release@v1
           with:
             tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
             release_name: ${{ steps.create_tag.outputs.TAG_NAME }}
             body: "Automatic release based on push to main branch"
             draft: false
-            prerelease: 
+            prerelease: false
+
+
   # export-android:
   #   runs-on: ubuntu-latest
   #   steps:
