@@ -93,11 +93,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           lfs: true
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'  # 您可以根据需要修改Java版本
-          distribution: 'oracle'  # 您可以选择不同的分发版本
       - name: Setup Godot Template
         run: |
           mkdir -v -p ~/.local/share/godot/export_templates/
@@ -107,7 +102,7 @@ jobs:
           mkdir -v -p build/android
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
-          godot --headless --verbose --export-debug "Android" "$EXPORT_DIR/android/$EXPORT_NAME-android.apk" --java-sdk-path $JAVA_HOME
+          godot --headless --verbose --export-debug "Android" "$EXPORT_DIR/android/$EXPORT_NAME-android.apk"
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
