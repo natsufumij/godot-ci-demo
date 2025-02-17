@@ -32,7 +32,7 @@ jobs:
           WINEPREFIX: /tmp/wine  
       - name: Install rcedit
         run: |
-          wget https://github.com/electron/rcedit/releases/download/v2.1.0/rcedit-x64.exe -O /usr/local/bin/rcedit.exe
+          wget https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -O /usr/local/bin/rcedit.exe
         env:
           WINEPREFIX: /tmp/wine
       - name: Windows Build
