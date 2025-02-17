@@ -32,7 +32,7 @@ jobs:
           WINEPREFIX: /tmp/wine  
       - name: Install rcedit
         run: |
-          wget https://github.com/electron/rcedit/releases/download/v2.1.0/rcedit-x64.exe -O /usr/local/bin/rcedit
+          wget https://github.com/electron/rcedit/releases/download/v2.1.0/rcedit-x64.exe -O /usr/local/bin/rcedit.exe
         env:
           WINEPREFIX: /tmp/wine
       - name: Windows Build
@@ -40,7 +40,7 @@ jobs:
           WINEPREFIX: /tmp/wine
           RECEDITE_EXE: /usr/local/bin/rcedit
         run: |
-          echo 'export/windows/rcedit = "/usr/local/bin/rcedit/rcedit.exe"' >> ~/.config/godot/editor_settings-${GODOT_VERSION}.tres
+          echo 'export/windows/rcedit = "/usr/local/bin/rcedit.exe"' >> ~/.config/godot/editor_settings-${GODOT_VERSION}.tres
           mkdir -v -p build/windows
           EXPORT_DIR="$(readlink -f build)"
           cd $PROJECT_PATH
