@@ -124,32 +124,32 @@ jobs:
           name: Release ${{ github.ref_name }}
           body: New Release.     
 
-  create_tag_and_release:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
-        - name: Set up Git
-          run: |
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        - name: Create Tag
-          id: create_tag
-          run: |
-            BRANCH_NAME=${GITHUB_REF##*/}          
-            TAG_NAME="${BRANCH_NAME}-v$(date +'%Y%m%d%H%M%S')"
-            git tag $TAG_NAME
-            git push origin $TAG_NAME
-            echo "::set-output name=TAG_NAME::$TAG_NAME"
-        - name: Create Release
-          id: create_release
-          uses: softprops/action-gh-release@v1
-          with:
-            tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
-            release_name: ${{ steps.create_tag.outputs.TAG_NAME }}
-            body: "Automatic release based on push to main branch"
-            draft: false
-            prerelease: false
+  # create_tag_and_release:
+  #     runs-on: ubuntu-latest
+  #     steps:
+  #       - name: Checkout code
+  #         uses: actions/checkout@v4
+  #       - name: Set up Git
+  #         run: |
+  #           git config --global user.name "github-actions[bot]"
+  #           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+  #       - name: Create Tag
+  #         id: create_tag
+  #         run: |
+  #           BRANCH_NAME=${GITHUB_REF##*/}          
+  #           TAG_NAME="${BRANCH_NAME}-v$(date +'%Y%m%d%H%M%S')"
+  #           git tag $TAG_NAME
+  #           git push origin $TAG_NAME
+  #           echo "::set-output name=TAG_NAME::$TAG_NAME"
+  #       - name: Create Release
+  #         id: create_release
+  #         uses: softprops/action-gh-release@v1
+  #         with:
+  #           tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+  #           release_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+  #           body: "Automatic release based on push to main branch"
+  #           draft: false
+  #           prerelease: false
 
 
   # export-android:
