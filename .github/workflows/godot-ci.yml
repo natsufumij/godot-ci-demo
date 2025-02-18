@@ -25,20 +25,13 @@ jobs:
           mkdir -v -p ~/.config/
           mv /root/.config/godot ~/.config/godot
           mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-      - name: Set Wine Prefix
-        run: |
           mkdir -p /tmp/wine
-        env:
-          WINEPREFIX: /tmp/wine  
       - name: Install rcedit
         run: |
           wget https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -O /usr/local/bin/rcedit.exe
-        env:
-          WINEPREFIX: /tmp/wine
       - name: Windows Build
         env:
           WINEPREFIX: /tmp/wine
-          RECEDITE_EXE: /usr/local/bin/rcedit
         run: |
           echo 'export/windows/rcedit = "/usr/local/bin/rcedit.exe"' >> ~/.config/godot/editor_settings-${GODOT_VERSION}.tres
           mkdir -v -p build/windows
