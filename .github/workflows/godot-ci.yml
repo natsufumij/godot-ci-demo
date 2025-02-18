@@ -128,7 +128,7 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/android/*
+          files: build/android/*.apk
           draft: false
           prerelease: false
           tag_name: ${{ github.ref_name }}
